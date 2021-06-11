@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(public fb: FormBuilder, private loginService: LoginService, private authService: AuthService) { }
+
+  loginInvalid: boolean = false;
+
+  formLogin = this.fb.group({
+    nick: ['', Validators.required],
+    password: ['', Validators.required]
+  })
+
+  clickLogin() {
+    if (this.formLogin.valid) {
+      this.loginService.login(this.formLogin.value).subscribe(resp => {
+        if (resp.estado == 'success') {
+          localStorage.setItem('token', resp.token)
+          this.authService.authenticate();
+          this.loginInvalid = false;
+        } else {
+          this.loginInvalid = true;
+        }
+      });
+    }
+  }
 
   hide: boolean = true;
 

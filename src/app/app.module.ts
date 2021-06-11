@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 //propios
 import { LoginModule } from './pages/login/login.module';
@@ -26,7 +27,8 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserAnimationsModule,
     HomeModule,
     LoginModule,
-    RegisterModule
+    RegisterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

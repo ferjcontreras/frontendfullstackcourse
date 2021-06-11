@@ -1,23 +1,25 @@
+<form [formGroup]="this.formLogin">
   <mat-card>
     <mat-card-header class="d-block text-center py-2">
       <mat-card-title>Logueate</mat-card-title>
     </mat-card-header>
     <mat-card-content class="d-flex flex-column">
-      <mat-form-field appearance="fill" class="">
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" required>
-        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+      <mat-form-field appearance="fill">
+        <mat-label>Nick</mat-label>
+        <input formControlName="nick" matInput required>
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
     </mat-card-content>
+    <mat-error *ngIf="loginInvalid">Los datos ingresados son inválidos</mat-error>
     <mat-card-actions class="text-center">
-      <button mat-raised-button color="primary">INGRESAR</button>
+      <button mat-raised-button color="primary" (click)="this.clickLogin()">INGRESAR</button>
     </mat-card-actions>
   </mat-card>
+</form>
