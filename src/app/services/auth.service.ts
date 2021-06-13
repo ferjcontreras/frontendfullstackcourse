@@ -19,5 +19,7 @@ export class AuthService {
     this.authState.next(false);
   }
 
-
+  isLogued() {
+    console.log(this.authState.value);
+  }
 }

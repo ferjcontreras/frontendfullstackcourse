@@ -1,1 +1,22 @@
-<p>header works!</p>
+<mat-toolbar color="primary">
+    <mat-toolbar-row color="primary">
+    <span>RecibosApp</span>
+    <span class="example-spacer"></span>
+      <div *ngIf="this.authService.authState.value">
+        <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <span><a routerLink="registeruser">Registro de Usuario</a></span>
+        </button>
+        <button mat-menu-item>
+          <span>Registrar Recibos de Sueldo</span>
+        </button>
+        <button mat-menu-item>
+          <span>Consultar Recibos de Sueldo</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>

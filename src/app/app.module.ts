@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 
 //propios
 import { LoginModule } from './pages/login/login.module';
@@ -28,7 +31,10 @@ import { FooterComponent } from './components/footer/footer.component';
     HomeModule,
     LoginModule,
     RegisterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

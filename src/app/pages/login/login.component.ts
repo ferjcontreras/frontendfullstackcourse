@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginService } from '../../services/login.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   clickLogin() {
     if (this.formLogin.valid) {
+      console.log(this.authService.isLogued());
       this.loginService.login(this.formLogin.value).subscribe(resp => {
         if (resp.estado == 'success') {
           localStorage.setItem('token', resp.token)
