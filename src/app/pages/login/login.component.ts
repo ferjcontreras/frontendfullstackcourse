@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginService } from '../../services/login.service';
 
@@ -11,9 +12,9 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public fb: FormBuilder, private loginService: LoginService, private authService: AuthService) { }
+  constructor(public fb: FormBuilder, private loginService: LoginService, private authService: AuthService, private router: Router) { }
 
-  loginInvalid: boolean = false;
+  loginInvalidMssg: boolean = false;
 
   formLogin = this.fb.group({
     nick: ['', Validators.required],
@@ -27,9 +28,9 @@ export class LoginComponent implements OnInit {
         if (resp.estado == 'success') {
           localStorage.setItem('token', resp.token)
           this.authService.authenticate();
-          this.loginInvalid = false;
+          //this.router.navigate(['/dashboard']); redireccion a page/dashboard
         } else {
-          this.loginInvalid = true;
+          this.loginInvalidMssg = true;
         }
       });
     }

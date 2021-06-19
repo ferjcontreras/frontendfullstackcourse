@@ -1,0 +1,21 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsuariosService {
+
+  constructor(private http: HttpClient) { }
+
+  rutaApi: string = "http://localhost:3000";
+
+  updateUsuario(dataForm: {}) {
+    return this.http.put(`${this.rutaApi}/usuario/update`, dataForm, {});
+  }
+
+  getUsuario() {
+    return this.http.get(`${this.rutaApi}/usuario/read`);
+  }
+
+}

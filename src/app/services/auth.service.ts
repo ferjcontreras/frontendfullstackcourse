@@ -9,6 +9,8 @@ export class AuthService {
   constructor() { }
 
   authState = new BehaviorSubject(false);
+  authStateAdmin = new BehaviorSubject(false);
+  authStateContador = new BehaviorSubject(false);
 
   authenticate() {
     this.authState.next(true);
@@ -19,7 +21,15 @@ export class AuthService {
     this.authState.next(false);
   }
 
+  setAdmin() {
+    this.authStateAdmin.next(true);
+  }
+
+  setContador() {
+    this.authStateContador.next(true);
+  }
+
   isLogued() {
-    console.log(this.authState.value);
+    return this.authState.value;
   }
 }

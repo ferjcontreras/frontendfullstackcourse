@@ -17,7 +17,7 @@
         </button>
       </mat-form-field>
     </mat-card-content>
-    <mat-error *ngIf="loginInvalid">Los datos ingresados son inválidos</mat-error>
+    <mat-error *ngIf="loginInvalidMssg">Los datos ingresados son inválidos</mat-error>
     <mat-card-actions class="text-center">
       <button mat-raised-button color="primary" (click)="this.clickLogin()">INGRESAR</button>
     </mat-card-actions>
