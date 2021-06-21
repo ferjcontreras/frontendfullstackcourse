@@ -1,27 +1,30 @@
-<form [formGroup]="this.formActualizarUsuario">
-  <mat-card class="custom_card">
-    <mat-card-header class="d-block text-center py-2">
-      <mat-card-title>Actualizar mi Perfil</mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="custom_card">
-      <mat-form-field class="example-full-width">
-        <mat-label>Nick</mat-label>
-        <input matInput formControlName="nick">
-      </mat-form-field>
-      <div *ngIf="this.formActualizarUsuario.get('nick')?.errors && this.formActualizarUsuario.get('nick')?.dirty">
-        <mat-error *ngIf="this.formActualizarUsuario.get('nick')?.hasError('required')">El campo es
-          obligatorio</mat-error>
-      </div>
+<mat-card class="custom_card">
+  <mat-card-header class="d-block text-center py-2">
+    <mat-card-title>Actualizar mi Perfil ({{ this.nick }})</mat-card-title>
+  </mat-card-header>
 
+  <form [formGroup]="this.formUpdateUsuario">
+
+    <mat-card-content class="custom_card">
       <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email">
       </mat-form-field>
-      <div *ngIf="this.formActualizarUsuario.get('email')?.errors && this.formActualizarUsuario.get('email')?.dirty">
-        <mat-error *ngIf="this.formActualizarUsuario.get('email')?.hasError('required')">El campo es
-          obligatorio</mat-error>
-      </div>
+      <mat-error *ngIf="this.formUpdateUsuario.get('email')?.errors && this.formUpdateUsuario.get('email')?.dirty">
+        {{ getErrorMessageEmail('email') }}</mat-error>
+    </mat-card-content>
 
+    <mat-card-actions class="text-center">
+      <button mat-raised-button color="primary" (click)="handleUpdateEmail()">Actualizar</button>
+    </mat-card-actions>
+  </form>
+
+
+  <mat-card-header class="d-block text-center py-2">
+    <mat-card-title>Cambiar Contraseña</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="this.formChangePassword">
+    <mat-card-content class="custom_card">
       <mat-form-field appearance="fill" class="example-full-width">
         <mat-label>Password</mat-label>
         <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>
@@ -30,6 +33,9 @@
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
+      <mat-error
+        *ngIf="this.formChangePassword.get('password')?.errors && this.formChangePassword.get('password')?.dirty">
+        {{ getErrorMessagePassword('password') }}</mat-error>
 
       <mat-form-field appearance="fill" class="example-full-width">
         <mat-label>Repetir Password</mat-label>
@@ -39,11 +45,15 @@
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
+      <mat-error
+        *ngIf="this.formChangePassword.get('password_repeat')?.errors && this.formChangePassword.get('password_repeat')?.dirty || this.formChangePassword.get('password')?.value !== this.formChangePassword.get('password_repeat')?.value">
+        {{ getErrorMessagePassword('password_repeat') }}</mat-error>
 
     </mat-card-content>
 
     <mat-card-actions class="text-center">
-      <button mat-raised-button color="primary" (click)="actualizar()">Actualizar</button>
+      <button mat-raised-button color="primary" (click)="handleChangePassword()">Actualizar</button>
     </mat-card-actions>
-  </mat-card>
-</form>
+  </form>
+
+</mat-card>

@@ -8,6 +8,7 @@
         <mat-icon>menu</mat-icon>
       </button>
     </div>
+    <div>{{ rxTime | date: 'd/M/Y hh:mm:ss a' }}</div>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>
         <span><a routerLink="registeruser">Registro de Usuario</a></span>

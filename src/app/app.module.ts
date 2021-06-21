@@ -20,27 +20,27 @@ import { UpdateUsuarioModule } from './pages/update-usuario/update-usuario.modul
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HomeModule,
-    LoginModule,
-    RegisterModule,
-    UpdateUsuarioModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatIconModule
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		HeaderComponent,
+		FooterComponent,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		HomeModule,
+		LoginModule,
+		RegisterModule,
+		UpdateUsuarioModule,
+		HttpClientModule,
+		MatToolbarModule,
+		MatMenuModule,
+		MatIconModule
+	],
+	providers: [
+		{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
