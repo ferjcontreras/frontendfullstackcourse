@@ -49,6 +49,15 @@
         <div *ngIf="this.formRegistroPersona.get('fecha_Nac')?.errors && this.formRegistroPersona.get('fecha_Nac')?.dirty">
           <mat-error *ngIf="this.formRegistroPersona.get('fecha_Nac')?.hasError('pattern')">El campo no cumple la regex</mat-error>
         </div>
+        
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+        <div *ngIf="this.formRegistroPersona.get('email')?.errors && this.formRegistroPersona.get('email')?.dirty">
+          <mat-error *ngIf="this.formRegistroPersona.get('email')?.hasError('required')">El campo email es obligatorio</mat-error>
+        </div>
       </mat-card-content>
 
       <mat-card-actions class="text-center">
