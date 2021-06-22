@@ -1,10 +1,79 @@
-  <mat-card class="text-center">
-    <mat-card-header>
-      <mat-card-title>Bienvenido a Recibos App</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" routerLink="/login">Continuar<mat-icon>chevron_right</mat-icon></button>
-    </mat-card-actions>
-  </mat-card>
+ <ng-container *ngIf="this.authService.isLogued(); then dashboard; else welcomeView">
+ </ng-container>
+
+ <ng-template #dashboard>
+   <div class="container d-flex justify-content-between dashboard-cards">
+     <!-- Card Mi Perfil -->
+     <mat-card class="mx-2">
+       <mat-card-header class="justify-content-center">
+         <mat-card-title>Mi Perfil</mat-card-title>
+       </mat-card-header>
+       <mat-card-content>
+         <mat-list>
+           <a mat-list-item routerLink="/perfil/actualizar-email" class="home-card-item hvr-underline-from-center">
+             <mat-icon>arrow_forward</mat-icon> Actualizar datos
+           </a>
+         </mat-list>
+         <mat-list>
+           <a mat-list-item routerLink="/perfil/cambiar-password" class="home-card-item hvr-underline-from-center">
+             <mat-icon>arrow_forward</mat-icon> Actualizar contraseña
+           </a>
+         </mat-list>
+       </mat-card-content>
+     </mat-card>
+
+     <ng-container *ngIf="this.authService.getRol() !== 3">
+       <!-- Card Personas -->
+       <mat-card class="mx-2">
+         <mat-card-header class="justify-content-center">
+           <mat-card-title>Personas</mat-card-title>
+         </mat-card-header>
+         <mat-card-content>
+           <mat-list>
+             <a mat-list-item routerLink="/persona/crear" class="home-card-item hvr-underline-from-center">
+               <mat-icon>arrow_forward</mat-icon> Crear Persona
+             </a>
+           </mat-list>
+           <mat-list>
+             <a mat-list-item routerLink="/persona/modificar" class="home-card-item hvr-underline-from-center">
+               <mat-icon>arrow_forward</mat-icon> Modificar Persona
+             </a>
+           </mat-list>
+         </mat-card-content>
+       </mat-card>
+     </ng-container>
+
+     <!-- Card Recibos -->
+     <mat-card class="mx-2">
+       <mat-card-header class="justify-content-center">
+         <mat-card-title>Recibos</mat-card-title>
+       </mat-card-header>
+       <mat-card-content>
+         <mat-list *ngIf="this.authService.getRol() !== 3">
+           <a mat-list-item routerLink="/recibo/upload" class="home-card-item hvr-underline-from-center">
+             <mat-icon>arrow_forward</mat-icon> Subir Recibo
+           </a>
+         </mat-list>
+         <mat-list>
+           <a mat-list-item routerLink="/recibo/listar" class="home-card-item hvr-underline-from-center">
+             <mat-icon>arrow_forward</mat-icon> Ver Recibos
+           </a>
+         </mat-list>
+       </mat-card-content>
+     </mat-card>
+   </div>
+ </ng-template>
+
+ <ng-template #welcomeView>
+   <mat-card class="text-center">
+     <mat-card-header>
+       <mat-card-title>Bienvenido a Recibos App</mat-card-title>
+     </mat-card-header>
+     <mat-card-content>
+     </mat-card-content>
+     <mat-card-actions>
+       <button mat-raised-button color="primary" routerLink="/login">Continuar<mat-icon>chevron_right</mat-icon>
+       </button>
+     </mat-card-actions>
+   </mat-card>
+ </ng-template>

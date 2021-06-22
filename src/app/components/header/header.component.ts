@@ -3,6 +3,7 @@ import { Subscription, timer } from "rxjs";
 import { map, share } from "rxjs/operators";
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { UsuariosService } from "src/app/services/usuarios.service";
 
 
 @Component({
@@ -12,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-	constructor(public authService: AuthService, private router: Router) { }
+	constructor(public authService: AuthService, private router: Router, public usuariosServicio: UsuariosService) { }
 
 	rxTime = new Date();
 	intervalId: number = 0;
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 		this.authService.logout();
 		this.router.navigate(['/']);
 	}
+
 	ngOnInit(): void {
 		this.subscription = timer(0, 1000)
 			.pipe(

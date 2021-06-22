@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
 
 //propios
 import { LoginModule } from './pages/login/login.module';
@@ -16,14 +17,13 @@ import { HomeModule } from './pages/home/home.module';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TokenInterceptor } from './services/token.interceptor';
-import { UpdateUsuarioModule } from './pages/update-usuario/update-usuario.module';
 
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		HeaderComponent,
-		FooterComponent,
+		FooterComponent
 	],
 	imports: [
 		BrowserModule,
@@ -32,11 +32,10 @@ import { UpdateUsuarioModule } from './pages/update-usuario/update-usuario.modul
 		HomeModule,
 		LoginModule,
 		RegisterModule,
-		UpdateUsuarioModule,
 		HttpClientModule,
 		MatToolbarModule,
-		MatMenuModule,
-		MatIconModule
+		MatIconModule,
+		MatButtonModule
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }

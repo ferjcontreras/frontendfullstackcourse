@@ -1,30 +1,18 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row color="primary">
-    <span>RecibosApp</span>
-    <span class="example-spacer"></span>
-    <div *ngIf="this.authService.authState.value">
-      <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu"
-        aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
+  <mat-toolbar-row color="primary" class="d-flex justify-content-between">
+
+    <a color="primary" routerLink="/">RecibosApp</a>
+
+    <div class="text-center">
+      <span class="d-block">{{ rxTime | date: 'd/M/Y hh:mm:ss a' }}</span>
+      <span *ngIf="this.authService.isLogued()" class="d-block">Bienvenido
+        {{ this.usuariosServicio.getUsuarioLocal().nick }}</span>
+    </div>
+
+    <div *ngIf="this.authService.isLogued()" class="button-container">
+      <button mat-flat-button color="warn" aria-label="Logout button" (click)="this.logout()">
+        SALIR <mat-icon>logout</mat-icon>
       </button>
     </div>
-    <div>{{ rxTime | date: 'd/M/Y hh:mm:ss a' }}</div>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <span><a routerLink="registeruser">Registro de Usuario</a></span>
-      </button>
-      <button mat-menu-item>
-        <span><a routerLink="actualizarusuario">Actualizar mi Usuario</a></span>
-      </button>
-      <button mat-menu-item>
-        <span>Registrar Recibos de Sueldo</span>
-      </button>
-      <button mat-menu-item>
-        <span>Consultar Recibos de Sueldo</span>
-      </button>
-      <button mat-menu-item (click)="this.logout()">
-        <span>Salir</span>
-      </button>
-    </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>

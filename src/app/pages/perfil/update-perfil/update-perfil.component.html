@@ -1,0 +1,23 @@
+<mat-card class="custom_card">
+  <mat-card-header class="d-block text-center py-2">
+    <mat-card-title>Actualizar mi Perfil</mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="this.formUpdateUsuario">
+
+    <mat-card-content class="custom_card">
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+      <mat-error *ngIf="this.formUpdateUsuario.get('email')?.errors && this.formUpdateUsuario.get('email')?.dirty">
+        {{ getErrorMessageEmail('email') }}</mat-error>
+    </mat-card-content>
+
+    <mat-card-actions class="text-center">
+      <button mat-raised-button color="primary" (click)="backPage()">Volver</button>
+      <button mat-raised-button color="primary" (click)="handleUpdateEmail()"
+        [disabled]="!formUpdateUsuario.valid">Actualizar</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

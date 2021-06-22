@@ -1,0 +1,75 @@
+<form [formGroup]="this.formRegistroPersona">
+  <mat-card class="custom_card">
+    <mat-card-header class="d-block text-center py-2">
+      <mat-card-title>Registro de Persona</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="custom_card">
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input type="text" matInput formControlName="nombre_persona">
+      </mat-form-field>
+      <div
+        *ngIf="this.formRegistroPersona.get('nombre_persona')?.errors && this.formRegistroPersona.get('nombre_persona')?.dirty">
+        <mat-error *ngIf="this.formRegistroPersona.get('nombre_persona')?.hasError('required')">El campo es obligatorio
+        </mat-error>
+      </div>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Apellido</mat-label>
+        <input type="text" matInput formControlName="apellido_persona">
+      </mat-form-field>
+      <div
+        *ngIf="this.formRegistroPersona.get('apellido_persona')?.errors && this.formRegistroPersona.get('apellido_persona')?.dirty">
+        <mat-error *ngIf="this.formRegistroPersona.get('apellido_persona')?.hasError('required')">El campo es
+          obligatorio</mat-error>
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo de documento</mat-label>
+        <select matNativeControl formControlName="tipo_Doc">
+          <option value="1">DNI</option>
+          <option value="2">LE</option>
+          <option value="3">Pasaporte</option>
+        </select>
+      </mat-form-field>
+      <div *ngIf="this.formRegistroPersona.get('tipo_Doc')?.errors && this.formRegistroPersona.get('tipo_Doc')?.dirty">
+        <mat-error *ngIf="this.formRegistroPersona.get('tipo_Doc')?.hasError('required')">El campo es obligatorio
+        </mat-error>
+      </div>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Numero de documento</mat-label>
+        <input type="number" matInput formControlName="num_Doc">
+      </mat-form-field>
+      <mat-error
+        *ngIf="this.formRegistroPersona.get('numero_Doc')?.errors && this.formRegistroPersona.get('numero_Doc')?.dirty">
+        {{ getErrorMessageNumDoc('numero_Doc') }}</mat-error>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input type="date" matInput formControlName="fecha_Nac" [max]="this.maxDate| date:'Y-MM-dd'">
+      </mat-form-field>
+      <div
+        *ngIf="this.formRegistroPersona.get('fecha_Nac')?.errors && this.formRegistroPersona.get('fecha_Nac')?.dirty">
+        <mat-error *ngIf="this.formRegistroPersona.get('fecha_Nac')?.hasError('pattern')">El campo no cumple la regex
+        </mat-error>
+      </div>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email">
+      </mat-form-field>
+      <div
+        *ngIf="this.formRegistroPersona.get('fecha_Nac')?.errors && this.formRegistroPersona.get('fecha_Nac')?.dirty">
+        <mat-error *ngIf="this.formRegistroPersona.get('fecha_Nac')?.hasError('pattern')">El campo no cumple la regex
+        </mat-error>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions class="text-center">
+      <button mat-raised-button color="primary" (click)="backPage()">Volver</button>
+      <button mat-raised-button color="primary" (click)="handleRegistro()"
+        [disabled]="!formRegistroPersona.valid">Registrar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
