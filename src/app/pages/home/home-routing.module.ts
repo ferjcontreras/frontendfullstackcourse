@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { PerfilModule } from '../perfil/perfil.module';
 import { PersonaModule } from '../persona/persona.module';
+import { GenerarclaveModule } from '../generarclave/generarclave.module';
 
 //guard
 import { AuthGuard } from 'src/app/guards/auth.guard';
@@ -29,6 +30,10 @@ const routes: Routes = [
 		path: "recibo",
 		loadChildren: () => import('src/app/pages/recibo/recibo.module').then(m => ReciboModule),
 		canActivate: [AuthGuard]
+	},
+	{
+		path: "generarClave/:hash",
+		loadChildren: () => import('src/app/pages/generarclave/generarclave-routing.module').then(m => GenerarclaveModule),
 	}
 ];
 

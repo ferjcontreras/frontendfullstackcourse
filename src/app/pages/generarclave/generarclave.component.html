@@ -1,0 +1,16 @@
+<mat-card>
+<form [formGroup]="this.formGenerar" class="custom_form">
+    <h1>Generar Contraseña</h1>
+    <mat-form-field class="example-full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="password" type="password">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Repetir Contraseña</mat-label>
+        <input matInput formControlName="password_repeat" type="password">
+    </mat-form-field>
+    <mat-error *ngIf="this.claveerr">{{this.messageerr}}</mat-error>
+    <input formControlName="userHash" type="hidden">
+    <button mat-raised-button color="primary" (click)="Generar()">Generar Clave</button>
+</form>
+</mat-card>>
