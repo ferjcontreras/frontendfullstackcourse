@@ -1,3 +1,18 @@
 form mat-form-field {
   display: block;
 }
+
+.example-full-width {
+  width: 100%;
+}
+
+.cardStyle {
+  width: 500px;
+  margin: auto;
+}
+
+@media only screen and (max-width: 500px) {
+  .cardStyle {
+    width: unset;
+  }
+}

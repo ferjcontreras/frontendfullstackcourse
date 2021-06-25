@@ -1,0 +1,14 @@
+.cardStyle {
+  width: 500px;
+  margin: auto;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+@media only screen and (max-width: 500px) {
+  .cardStyle {
+    width: unset;
+  }
+}

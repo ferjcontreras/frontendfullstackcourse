@@ -2,7 +2,7 @@
  </ng-container>
 
  <ng-template #dashboard>
-   <div class="container d-flex justify-content-between dashboard-cards">
+   <div class="container d-flex align-items-center justify-content-around dashboard-cards h-100">
      <!-- Card Mi Perfil -->
      <mat-card class="mx-2">
        <mat-card-header class="justify-content-center">
@@ -35,7 +35,7 @@
              </a>
            </mat-list>
            <mat-list>
-             <a mat-list-item routerLink="/persona/modificar" class="home-card-item hvr-underline-from-center">
+             <a mat-list-item routerLink="/persona/listar" class="home-card-item hvr-underline-from-center">
                <mat-icon>arrow_forward</mat-icon> Modificar Persona
              </a>
            </mat-list>
@@ -65,15 +65,17 @@
  </ng-template>
 
  <ng-template #welcomeView>
-   <mat-card class="text-center">
-     <mat-card-header>
-       <mat-card-title>Bienvenido a Recibos App</mat-card-title>
-     </mat-card-header>
-     <mat-card-content>
-     </mat-card-content>
-     <mat-card-actions>
-       <button mat-raised-button color="primary" routerLink="/login">Continuar<mat-icon>chevron_right</mat-icon>
-       </button>
-     </mat-card-actions>
-   </mat-card>
+   <div class="container d-flex align-items-center justify-content-around dashboard-cards h-100">
+     <mat-card class="text-center">
+       <mat-card-header>
+         <mat-card-title>Bienvenido a Recibos App</mat-card-title>
+       </mat-card-header>
+       <mat-card-content>
+       </mat-card-content>
+       <mat-card-actions>
+         <button mat-raised-button color="primary" routerLink="/login">Continuar<mat-icon>chevron_right</mat-icon>
+         </button>
+       </mat-card-actions>
+     </mat-card>
+   </div>
  </ng-template>
