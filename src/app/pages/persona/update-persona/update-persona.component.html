@@ -1,1 +1,74 @@
-<p>update-persona works!</p>
+<div class="container d-flex align-items-center justify-content-around dashboard-cards h-100">
+  <form [formGroup]="this.formUpdatePersona">
+    <mat-card class="custom_card cardStyle">
+      <mat-card-header class="d-block text-center py-2">
+        <mat-card-title>Actualizar Persona</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="custom_card">
+        <input type="number" matInput formControlName="id" hidden>
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre</mat-label>
+          <input type="text" matInput formControlName="nombre">
+        </mat-form-field>
+        <div *ngIf="this.formUpdatePersona.get('nombre')?.errors && this.formUpdatePersona.get('nombre')?.dirty">
+          <mat-error *ngIf="this.formUpdatePersona.get('nombre')?.hasError('required')">El campo es
+            obligatorio
+          </mat-error>
+        </div>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellido</mat-label>
+          <input type="text" matInput formControlName="apellido">
+        </mat-form-field>
+        <div *ngIf="this.formUpdatePersona.get('apellido')?.errors && this.formUpdatePersona.get('apellido')?.dirty">
+          <mat-error *ngIf="this.formUpdatePersona.get('apellido')?.hasError('required')">El campo es
+            obligatorio</mat-error>
+        </div>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Tipo de documento</mat-label>
+          <select matNativeControl formControlName="tipoDoc">
+            <option value="1" selected>DNI</option>
+            <option value="2">LE</option>
+            <option value="3">Pasaporte</option>
+          </select>
+        </mat-form-field>
+        <div *ngIf="this.formUpdatePersona.get('tipoDoc')?.errors && this.formUpdatePersona.get('tipoDoc')?.dirty">
+          <mat-error *ngIf="this.formUpdatePersona.get('tipoDoc')?.hasError('required')">El campo es obligatorio
+          </mat-error>
+        </div>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Numero de documento</mat-label>
+          <input type="number" matInput formControlName="n_doc">
+        </mat-form-field>
+        <mat-error *ngIf="this.formUpdatePersona.get('n_doc')?.errors && this.formUpdatePersona.get('n_doc')?.dirty">
+          {{ getErrorMessageN_doc('n_doc') }}</mat-error>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Fecha de Nacimiento</mat-label>
+          <input type="date" matInput formControlName="fecha_Nac" [max]="this.maxDate| date:'Y-MM-dd'">
+        </mat-form-field>
+        <div *ngIf="this.formUpdatePersona.get('fecha_Nac')?.errors && this.formUpdatePersona.get('fecha_Nac')?.dirty">
+          <mat-error *ngIf="this.formUpdatePersona.get('fecha_Nac')?.hasError('pattern')">El campo no cumple la regex
+          </mat-error>
+        </div>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email">
+        </mat-form-field>
+        <div *ngIf="this.formUpdatePersona.get('email')?.errors && this.formUpdatePersona.get('email')?.dirty">
+          <mat-error *ngIf="this.formUpdatePersona.get('email')?.hasError('email')">El campo no es un email
+          </mat-error>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="text-center">
+        <button mat-raised-button color="primary" (click)="backPage()">Volver</button>
+        <button mat-raised-button color="primary" (click)="handleUpdate()"
+          [disabled]="!formUpdatePersona.valid">Actualizar</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

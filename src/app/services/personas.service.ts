@@ -19,4 +19,12 @@ export class PersonasService {
 	listarPersonas() {
 		return this.http.get<IrespBackend>(`${this.rutaApi}/persona/readAll`);
 	}
+
+	getPersona(dataForm: {}) {
+		return this.http.post<IrespBackend>(`${this.rutaApi}/persona/readOne`, dataForm, {});
+	}
+
+	updatePersona(dataForm: {}) {
+		return this.http.post<IrespBackend>(`${this.rutaApi}/persona/update`, dataForm, {});
+	}
 }

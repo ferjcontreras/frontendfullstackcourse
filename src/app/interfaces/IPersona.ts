@@ -4,5 +4,6 @@ export default interface IPersona {
 	n_doc: number,
 	nombre: string,
 	apellido: string,
-	fecha_nacimiento: string
+	fecha_nacimiento: string,
+	email?: string
 }

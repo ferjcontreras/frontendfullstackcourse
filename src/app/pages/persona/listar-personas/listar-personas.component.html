@@ -1,27 +1,33 @@
 <div class="container d-flex align-items-start justify-content-around dashboard-cards h-100 mt-5">
   <table mat-table [dataSource]="personas" class="mat-elevation-z8 cardStyle">
-    <!-- Position Column -->
+
     <ng-container matColumnDef="n_doc">
       <th mat-header-cell *matHeaderCellDef> Nº. Doc </th>
       <td mat-cell *matCellDef="let element"> {{element.n_doc}} </td>
     </ng-container>
 
-    <!-- Name Column -->
     <ng-container matColumnDef="nombre">
       <th mat-header-cell *matHeaderCellDef> Nombre </th>
       <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
     </ng-container>
 
-    <!-- Weight Column -->
     <ng-container matColumnDef="apellido">
       <th mat-header-cell *matHeaderCellDef> Apellido </th>
       <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
     <ng-container matColumnDef="fecha_nacimiento">
       <th mat-header-cell *matHeaderCellDef> F. Nac. </th>
       <td mat-cell *matCellDef="let element"> {{element.fecha_nacimiento|date:"dd/MM/Y"}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="accion">
+      <th mat-header-cell *matHeaderCellDef> Accion </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-mini-fab routerLink="/persona/modificar/{{element.n_doc}}">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

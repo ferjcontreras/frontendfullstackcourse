@@ -17,7 +17,7 @@ const routes: Routes = [
 		canActivate: [AuthGuard]
 	},
 	{
-		path: "modificar",
+		path: "modificar/:id",
 		component: UpdatePersonaComponent,
 		canActivate: [AuthGuard]
 	}

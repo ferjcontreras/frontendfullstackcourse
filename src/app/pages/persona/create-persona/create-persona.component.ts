@@ -10,17 +10,17 @@ import { PersonasService } from 'src/app/services/personas.service';
 })
 export class CreatePersonaComponent implements OnInit {
 
-	constructor(public fb: FormBuilder, public personasservice: PersonasService, private location: Location) { }
+	constructor(public fb: FormBuilder, public personasService: PersonasService, private location: Location) { }
 
 	maxDate: Date = new Date();
 
 	formRegistroPersona = this.fb.group({
-		nombre_persona: ["", [Validators.required, Validators.pattern(/^([A-Z]|[a-z])+$/)]],
-		apellido_persona: ["", [Validators.required, Validators.pattern(/^([A-Z]|[a-z])+$/)]],
-		tipo_Doc: ["", Validators.required],
-		num_Doc: ["", [Validators.required, Validators.maxLength(8), Validators.minLength(6)]],
+		nombre: ["", [Validators.required, Validators.pattern(/^([A-Z]|[a-z])+$/)]],
+		apellido: ["", [Validators.required, Validators.pattern(/^([A-Z]|[a-z])+$/)]],
+		tipoDoc: ["", Validators.required],
+		n_doc: ["", [Validators.required, Validators.maxLength(8), Validators.minLength(6)]],
 		fecha_Nac: ["", [Validators.required]],
-		email: ["", Validators.required]
+		email: ["", Validators.required, Validators.email]
 	})
 
 	ngOnInit(): void {
@@ -29,13 +29,13 @@ export class CreatePersonaComponent implements OnInit {
 
 	handleRegistro() {
 		if (this.formRegistroPersona.valid) {
-			this.personasservice.crearPersona(this.formRegistroPersona.value).subscribe(respuetaBackend => {
+			this.personasService.crearPersona(this.formRegistroPersona.value).subscribe(respuetaBackend => {
 				console.log(respuetaBackend)
 			})
 		}
 	}
 
-	getErrorMessageNumDoc(nameControl: string) {
+	getErrorMessageN_doc(nameControl: string) {
 		return this.formRegistroPersona.get(nameControl)?.hasError('required') ? 'El campo es obligatorio' :
 			this.formRegistroPersona.get(nameControl)?.hasError('minlength') ? 'Debe completar al menos 4 caracteres' :
 				this.formRegistroPersona.get(nameControl)?.hasError('maxlength') ? 'El campo no puede superar los 8 caracteres' : '';

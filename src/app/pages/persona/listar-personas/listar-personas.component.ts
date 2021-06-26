@@ -11,7 +11,7 @@ export class ListarPersonasComponent implements OnInit {
 
 	constructor(private personaService: PersonasService) { }
 
-	displayedColumns: string[] = ['n_doc', 'nombre', 'apellido', 'fecha_nacimiento'];
+	displayedColumns: string[] = ['n_doc', 'nombre', 'apellido', 'fecha_nacimiento', 'accion'];
 	personas: IPersona[] = [];
 
 	ngOnInit(): void {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import IUsuario from '../interfaces/IUsuario';
 import { UsuariosService } from './usuarios.service';
 
 @Injectable({
@@ -7,42 +8,21 @@ import { UsuariosService } from './usuarios.service';
 })
 export class AuthService {
 
-	authState = new BehaviorSubject(this.firstLoadIsLogued());
-	authStateRol = new BehaviorSubject(-1);
+	authState = new BehaviorSubject(false);
 
-	constructor(public usuariosServicio: UsuariosService) { }
+	constructor(private usuariosServicio: UsuariosService) { }
 
-	authenticate(idRol: number) {
+	authenticate(user: IUsuario) {
 		this.authState.next(true);
-		this.authStateRol.next(idRol);
-	}
-
-	firstLoadIsLogued() {
-		let isLogued: boolean = true;	//este deberia ser falso pero no funciona xq el subscribe no tiene un await para esperar el resultado y cambiar el valor de isLogued
-		if (localStorage.getItem('token') != null) {
-			this.usuariosServicio.getUsuarioBack().subscribe((resp: any) => {
-				if (resp.estado === 'success') {
-					this.usuariosServicio.setUsuarioLocal(resp.data);
-					return true;
-				} else {
-					return false
-				}
-			})
-		} else {
-			isLogued = false
-		}
-		return isLogued;
+		this.usuariosServicio.setUsuarioLocal(user)
 	}
 
 	logout() {
 		localStorage.removeItem('token');
 		this.authState.next(false);
 	}
+
 	isLogued() {
 		return this.authState.value;
-	}
-
-	getRol() {
-		return this.authStateRol.value;
 	}
 }

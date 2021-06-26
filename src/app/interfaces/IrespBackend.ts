@@ -1,5 +1,5 @@
 export default interface IrespBackend {
 	estado: string,
-	data: {},
+	data: any,
 	token: string,
 }

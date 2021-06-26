@@ -29,8 +29,7 @@ export class LoginComponent implements OnInit {
 				if (resp.estado == 'success') {
 					const data: IUsuario = resp.data;
 					localStorage.setItem('token', resp.token)
-					this.authService.authenticate(data.idRol);
-					this.usuariosServicio.setUsuarioLocal(data);
+					this.authService.authenticate(data);
 					this.router.navigate(['/']);
 				} else {
 					this.loginInvalidMssg = true;

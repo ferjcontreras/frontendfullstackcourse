@@ -22,7 +22,7 @@
        </mat-card-content>
      </mat-card>
 
-     <ng-container *ngIf="this.authService.getRol() !== 3">
+     <ng-container *ngIf="this.usuarioService.getUsuarioLocal().idRol !== 3">
        <!-- Card Personas -->
        <mat-card class="mx-2">
          <mat-card-header class="justify-content-center">
@@ -49,7 +49,7 @@
          <mat-card-title>Recibos</mat-card-title>
        </mat-card-header>
        <mat-card-content>
-         <mat-list *ngIf="this.authService.getRol() !== 3">
+         <mat-list *ngIf="this.usuarioService.getUsuarioLocal().idRol !== 3">
            <a mat-list-item routerLink="/recibo/upload" class="home-card-item hvr-underline-from-center">
              <mat-icon>arrow_forward</mat-icon> Subir Recibo
            </a>
