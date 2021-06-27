@@ -4,4 +4,5 @@ export default interface IUsuario {
 	email: string,
 	idRol: number,
 	idPersona: number,
+	avatar: string,
 }

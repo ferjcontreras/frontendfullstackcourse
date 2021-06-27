@@ -1,4 +1,4 @@
-<div class="container d-flex align-items-start justify-content-around dashboard-cards h-100 mt-5">
+<div class="container d-flex align-items-center dashboard-cards h-100 mt-5 flex-column">
   <table mat-table [dataSource]="personas" class="mat-elevation-z8 cardStyle">
 
     <ng-container matColumnDef="n_doc">
@@ -33,4 +33,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <button mat-raised-button color="primary" class="mt-3" (click)="backPage()">Volver</button>
+
 </div>

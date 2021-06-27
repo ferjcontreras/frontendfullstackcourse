@@ -1,5 +1,5 @@
 export default interface IPersona {
-	_id: number
+	id: number
 	tipoDoc: number,
 	n_doc: number,
 	nombre: string,

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import IrespBackend from '../interfaces/IrespBackend';
 
 
@@ -10,7 +11,7 @@ export class PersonasService {
 
 	constructor(private http: HttpClient) { }
 
-	rutaApi: string = "http://localhost:3000";
+	rutaApi: string = environment.urlApi;
 
 	crearPersona(dataForm: {}) {
 		return this.http.post<IrespBackend>(`${this.rutaApi}/persona/create`, dataForm, {});
@@ -25,6 +26,6 @@ export class PersonasService {
 	}
 
 	updatePersona(dataForm: {}) {
-		return this.http.post<IrespBackend>(`${this.rutaApi}/persona/update`, dataForm, {});
+		return this.http.put<IrespBackend>(`${this.rutaApi}/persona/update`, dataForm, {});
 	}
 }

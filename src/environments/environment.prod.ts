@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+	production: true,
+	urlApi: "https://recibos-app.com",
+	ambiente: "",
+	timeout_peticiones: 5000
 };

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import IPersona from 'src/app/interfaces/IPersona';
 import { PersonasService } from 'src/app/services/personas.service';
@@ -9,7 +10,7 @@ import { PersonasService } from 'src/app/services/personas.service';
 })
 export class ListarPersonasComponent implements OnInit {
 
-	constructor(private personaService: PersonasService) { }
+	constructor(private personaService: PersonasService, private location: Location) { }
 
 	displayedColumns: string[] = ['n_doc', 'nombre', 'apellido', 'fecha_nacimiento', 'accion'];
 	personas: IPersona[] = [];
@@ -20,6 +21,10 @@ export class ListarPersonasComponent implements OnInit {
 				this.personas = resp.data;
 			}
 		});
+	}
+
+	backPage(): void {
+		this.location.back()
 	}
 
 }

@@ -12,7 +12,6 @@ import { MatButtonModule } from '@angular/material/button';
 
 //propios
 import { LoginModule } from './pages/login/login.module';
-import { RegisterModule } from './pages/register/register.module';
 import { HomeModule } from './pages/home/home.module';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -31,7 +30,6 @@ import { TokenInterceptor } from './services/token.interceptor';
 		BrowserAnimationsModule,
 		HomeModule,
 		LoginModule,
-		RegisterModule,
 		HttpClientModule,
 		MatToolbarModule,
 		MatIconModule,

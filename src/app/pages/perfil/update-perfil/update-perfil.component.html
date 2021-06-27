@@ -6,13 +6,16 @@
 
     <form [formGroup]="this.formUpdateUsuario">
 
-      <mat-card-content class="custom_card">
-        <mat-form-field class="example-full-width">
+      <mat-card-content class="custom_card d-flex justify-content-center">
+        <div class="img-width">
+          <img mat-card-image src="{{imageToShow}}" alt="Avatar del Usuario" class="rounded-circle">
+        </div>
+        <mat-form-field class="form-width ms-3">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email">
+          <mat-error *ngIf="this.formUpdateUsuario.get('email')?.errors && this.formUpdateUsuario.get('email')?.dirty">
+            {{ getErrorMessageEmail('email') }}</mat-error>
         </mat-form-field>
-        <mat-error *ngIf="this.formUpdateUsuario.get('email')?.errors && this.formUpdateUsuario.get('email')?.dirty">
-          {{ getErrorMessageEmail('email') }}</mat-error>
       </mat-card-content>
 
       <mat-card-actions class="text-center">

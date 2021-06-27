@@ -21,7 +21,7 @@ export class UpdatePersonaComponent implements OnInit {
 		nombre: ["", [Validators.required, Validators.pattern(/^([A-Z]|[a-z])+$/)]],
 		apellido: ["", [Validators.required, Validators.pattern(/^([A-Z]|[a-z])+$/)]],
 		tipoDoc: ["", Validators.required],
-		n_doc: ["", [Validators.required, Validators.maxLength(8), Validators.minLength(6)]],
+		n_doc: ["", [Validators.required, Validators.maxLength(8), Validators.minLength(6), Validators.pattern(/^([0-9])*$/)]],
 		fecha_Nac: ["", [Validators.required]],
 		email: ["", [Validators.required, Validators.email]]
 	})
@@ -32,7 +32,7 @@ export class UpdatePersonaComponent implements OnInit {
 			if (respuestaBackend.estado === 'success') {
 				const data: IPersona = respuestaBackend.data[0];
 				const fecha_nac = new Date(data.fecha_nacimiento).toISOString().slice(0, 10);
-				this.formUpdatePersona.get('id')?.setValue(data._id)
+				this.formUpdatePersona.get('id')?.setValue(data.id)
 				this.formUpdatePersona.get('nombre')?.setValue(data.nombre)
 				this.formUpdatePersona.get('apellido')?.setValue(data.apellido)
 				this.formUpdatePersona.get('tipoDoc')?.setValue(data.tipoDoc)
@@ -52,9 +52,10 @@ export class UpdatePersonaComponent implements OnInit {
 	}
 
 	getErrorMessageN_doc(nameControl: string) {
-		return this.formUpdatePersona.get(nameControl)?.hasError('required') ? 'El campo es obligatorio' :
-			this.formUpdatePersona.get(nameControl)?.hasError('minlength') ? 'Debe completar al menos 4 caracteres' :
-				this.formUpdatePersona.get(nameControl)?.hasError('maxlength') ? 'El campo no puede superar los 8 caracteres' : '';
+		return this.formUpdatePersona.get(nameControl)?.hasError('pattern') ? 'Solo debe contener números' :
+			this.formUpdatePersona.get(nameControl)?.hasError('required') ? 'El campo es obligatorio' :
+				this.formUpdatePersona.get(nameControl)?.hasError('minlength') ? 'Debe completar al menos 6 caracteres' :
+					this.formUpdatePersona.get(nameControl)?.hasError('maxlength') ? 'El campo no puede superar los 8 caracteres' : '';
 	}
 
 	backPage(): void {

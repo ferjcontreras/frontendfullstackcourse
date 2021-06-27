@@ -18,9 +18,9 @@ export class CreatePersonaComponent implements OnInit {
 		nombre: ["", [Validators.required, Validators.pattern(/^([A-Z]|[a-z])+$/)]],
 		apellido: ["", [Validators.required, Validators.pattern(/^([A-Z]|[a-z])+$/)]],
 		tipoDoc: ["", Validators.required],
-		n_doc: ["", [Validators.required, Validators.maxLength(8), Validators.minLength(6)]],
-		fecha_Nac: ["", [Validators.required]],
-		email: ["", Validators.required, Validators.email]
+		n_doc: ["", [Validators.required, Validators.maxLength(8), Validators.minLength(6), Validators.pattern(/^([0-9])*$/)]],
+		fecha_Nac: ["", Validators.required],
+		email: ["", [Validators.required, Validators.email]]
 	})
 
 	ngOnInit(): void {
@@ -36,9 +36,10 @@ export class CreatePersonaComponent implements OnInit {
 	}
 
 	getErrorMessageN_doc(nameControl: string) {
-		return this.formRegistroPersona.get(nameControl)?.hasError('required') ? 'El campo es obligatorio' :
-			this.formRegistroPersona.get(nameControl)?.hasError('minlength') ? 'Debe completar al menos 4 caracteres' :
-				this.formRegistroPersona.get(nameControl)?.hasError('maxlength') ? 'El campo no puede superar los 8 caracteres' : '';
+		return this.formRegistroPersona.get(nameControl)?.hasError('pattern') ? 'Solo debe contener números' :
+			this.formRegistroPersona.get(nameControl)?.hasError('required') ? 'El campo es obligatorio' :
+				this.formRegistroPersona.get(nameControl)?.hasError('minlength') ? 'Debe completar al menos 6 caracteres' :
+					this.formRegistroPersona.get(nameControl)?.hasError('maxlength') ? 'El campo no puede superar los 8 caracteres' : '';
 	}
 
 	backPage(): void {

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import IrespBackend from '../interfaces/IrespBackend';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import IUsuario from '../interfaces/IUsuario';
 
 @Injectable({
@@ -10,13 +11,14 @@ export class UsuariosService {
 
 	constructor(private http: HttpClient) { }
 
-	rutaApi: string = "http://localhost:3000";
+	rutaApi: string = environment.urlApi;
 	usuario: IUsuario = {
 		_id: -1,
 		email: '',
 		idPersona: -1,
 		idRol: -1,
-		nick: ''
+		nick: '',
+		avatar: ''
 	};
 
 	//update solo el email
@@ -31,6 +33,10 @@ export class UsuariosService {
 
 	getUsuarioBack() {
 		return this.http.get(`${this.rutaApi}/usuario/read`);
+	}
+
+	getAvatar(): Observable<Blob> {
+		return this.http.get(`${this.rutaApi}/usuario/getAvatar`, { responseType: 'blob' });
 	}
 
 	setUsuarioLocal(user: IUsuario) {

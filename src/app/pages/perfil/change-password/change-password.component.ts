@@ -36,7 +36,7 @@ export class ChangePasswordComponent implements OnInit {
 	getErrorMessagePassword(nameControl: string) {
 		return this.formChangePassword.get(nameControl)?.hasError('required') ? 'El campo es obligatorio' :
 			this.formChangePassword.get(nameControl)?.hasError('minlength') ? 'Debe tener 8 carácteres mínimo' :
-				(nameControl == 'password_repeat' && this.formChangePassword.get('password')?.value !== this.formChangePassword.get('password_repeat')?.value ? 'Las contraseñas no coinciden' : '');
+				(nameControl == 'password_repeat' && (this.formChangePassword.get('password')?.value !== this.formChangePassword.get('password_repeat')?.value) ? 'Las contraseñas no coinciden' : '');
 	}
 
 	backPage(): void {

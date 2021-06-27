@@ -1,17 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import IrespBackend from '../interfaces/IrespBackend';
 
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class GenclaveService {
 
-  constructor(private http: HttpClient) { } 
+	constructor(private http: HttpClient) { }
 
-  generar(genForm: {}) {
-    return this.http.post<IrespBackend>('http://localhost:3000/usuario/generarClave', genForm)
-  }
+	rutaApi: string = environment.urlApi;
+
+	generar(genForm: {}) {
+		return this.http.post<IrespBackend>(`${this.rutaApi}/usuario/generarClave`, genForm)
+	}
 
 }
