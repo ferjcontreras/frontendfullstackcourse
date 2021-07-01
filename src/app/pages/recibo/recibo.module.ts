@@ -5,6 +5,17 @@ import { ReciboRoutingModule } from './recibo-routing.module';
 import { UploadReciboComponent } from './upload-recibo/upload-recibo.component';
 import { ListarRecibosComponent } from './listar-recibos/listar-recibos.component';
 
+import { MatCardModule } from '@angular/material/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+
+
+
 
 @NgModule({
 	declarations: [
@@ -13,7 +24,16 @@ import { ListarRecibosComponent } from './listar-recibos/listar-recibos.componen
 	],
 	imports: [
 		CommonModule,
-		ReciboRoutingModule
+		ReciboRoutingModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatSelectModule,
+		MatButtonModule,
+		MatCardModule,
+		MatTableModule,
+		MatIconModule,
 	]
 })
 export class ReciboModule { }
