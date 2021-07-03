@@ -16,13 +16,15 @@ import { HomeModule } from './pages/home/home.module';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TokenInterceptor } from './services/token.interceptor';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		HeaderComponent,
-		FooterComponent
+		FooterComponent,
+		NotFoundComponent
 	],
 	imports: [
 		BrowserModule,

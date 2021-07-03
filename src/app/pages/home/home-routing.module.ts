@@ -10,6 +10,7 @@ import { GenerarclaveModule } from '../generarclave/generarclave.module';
 //guard
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { ReciboModule } from 'src/app/pages/recibo/recibo.module';
+import { NotFoundComponent } from '../not-found/not-found.component';
 
 const routes: Routes = [
 	{
@@ -34,6 +35,10 @@ const routes: Routes = [
 	{
 		path: "generarClave/:hash",
 		loadChildren: () => import('src/app/pages/generarclave/generarclave-routing.module').then(m => GenerarclaveModule),
+	}, {
+		path: "**",
+		component: NotFoundComponent,
+		pathMatch: "full"
 	}
 ];
 
