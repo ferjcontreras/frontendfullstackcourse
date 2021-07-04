@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import IrespBackend from '../interfaces/IrespBackend';
 import IUsuario from '../interfaces/IUsuario';
 
 @Injectable({
@@ -23,16 +24,16 @@ export class UsuariosService {
 
 	//update solo el email
 	updateEmail(dataForm: {}) {
-		return this.http.put(`${this.rutaApi}/usuario/update`, dataForm, {});
+		return this.http.put<IrespBackend>(`${this.rutaApi}/usuario/update`, dataForm, {});
 	}
 
 	//update solo la contraseña
 	changePassword(dataForm: {}) {
-		return this.http.put(`${this.rutaApi}/usuario/changePassword`, dataForm, {});
+		return this.http.put<IrespBackend>(`${this.rutaApi}/usuario/changePassword`, dataForm, {});
 	}
 
 	getUsuarioBack() {
-		return this.http.get(`${this.rutaApi}/usuario/read`);
+		return this.http.get<IrespBackend>(`${this.rutaApi}/usuario/read`);
 	}
 
 	getAvatar(): Observable<Blob> {

@@ -1,8 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import IModalData from 'src/app/interfaces/IModalData';
 import IPersona from 'src/app/interfaces/IPersona';
+import ModalGeneral from 'src/app/services/ModalGeneral';
 import { PersonasService } from 'src/app/services/personas.service';
 
 @Component({
@@ -12,9 +15,27 @@ import { PersonasService } from 'src/app/services/personas.service';
 })
 export class UpdatePersonaComponent implements OnInit {
 
-	constructor(private activatedRoute: ActivatedRoute, public fb: FormBuilder, public personasService: PersonasService, private location: Location) { }
+	dataExito: IModalData = {
+		title: 'Éxito',
+		message: 'Persona actualizada correctamente',
+		icon: 'check_circle',
+	};
+	dataError: IModalData = {
+		title: 'Error',
+		message: 'La persona no se pudo actualizar',
+		icon: 'error'
+	};
+
+	constructor(
+		private activatedRoute: ActivatedRoute,
+		public fb: FormBuilder,
+		public personasService: PersonasService,
+		private location: Location,
+		private dialog: MatDialog
+	) { }
 
 	maxDate: Date = new Date();
+	modals = new ModalGeneral(this.dialog, this.location);
 
 	formUpdatePersona = this.fb.group({
 		id: ['', [Validators.required]],
@@ -45,8 +66,9 @@ export class UpdatePersonaComponent implements OnInit {
 
 	handleUpdate() {
 		if (this.formUpdatePersona.valid) {
+			this.modals.openLoading();
 			this.personasService.updatePersona(this.formUpdatePersona.value).subscribe(respuestaBackend => {
-				console.log(respuestaBackend)
+				this.modals.openModalInfo(respuestaBackend.estado == 'success' ? this.dataExito : this.dataError);
 			})
 		}
 	}
@@ -61,5 +83,6 @@ export class UpdatePersonaComponent implements OnInit {
 	backPage(): void {
 		this.location.back()
 	}
+
 
 }

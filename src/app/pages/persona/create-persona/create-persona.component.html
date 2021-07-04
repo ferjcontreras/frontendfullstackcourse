@@ -8,7 +8,7 @@
       <mat-card-content class="custom_card">
         <mat-form-field class="example-full-width">
           <mat-label>Nombre</mat-label>
-          <input type="text" matInput formControlName="nombre">
+          <input type="text" matInput formControlName="nombre" required>
           <mat-error *ngIf="this.formRegistroPersona.get('nombre')?.hasError('required')">El campo es
             obligatorio
           </mat-error>
@@ -18,7 +18,7 @@
 
         <mat-form-field class="example-full-width">
           <mat-label>Apellido</mat-label>
-          <input type="text" matInput formControlName="apellido">
+          <input type="text" matInput formControlName="apellido" required>
           <mat-error *ngIf="this.formRegistroPersona.get('apellido')?.hasError('required')">El campo es
             obligatorio</mat-error>
           <mat-error *ngIf="this.formRegistroPersona.get('apellido')?.hasError('pattern')">El campo no cumple el
@@ -28,18 +28,18 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Tipo de documento</mat-label>
-          <select matNativeControl formControlName="tipoDoc">
-            <option value="1">DNI</option>
-            <option value="2">LE</option>
-            <option value="3">Pasaporte</option>
-          </select>
+          <mat-select formControlName="tipoDoc" required>
+            <mat-option value="1">DNI</mat-option>
+            <mat-option value="2">LE</mat-option>
+            <mat-option value="3">Pasaporte</mat-option>
+          </mat-select>
           <mat-error *ngIf="this.formRegistroPersona.get('tipoDoc')?.hasError('required')">El campo es obligatorio
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>Numero de documento</mat-label>
-          <input type="text" matInput formControlName="n_doc">
+          <input type="text" matInput formControlName="n_doc" required>
           <mat-error
             *ngIf="this.formRegistroPersona.get('n_doc')?.errors && this.formRegistroPersona.get('n_doc')?.dirty">
             {{ getErrorMessageN_doc('n_doc') }}</mat-error>
@@ -47,14 +47,14 @@
 
         <mat-form-field class="example-full-width">
           <mat-label>Fecha de Nacimiento</mat-label>
-          <input type="date" matInput formControlName="fecha_Nac" [max]="this.maxDate| date:'Y-MM-dd'">
+          <input type="date" matInput formControlName="fecha_Nac" [max]="this.maxDate| date:'Y-MM-dd'" required>
           <mat-error *ngIf="this.formRegistroPersona.get('fecha_Nac')?.hasError('required')">El campo es obligatorio
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>Email</mat-label>
-          <input type="email" matInput formControlName="email">
+          <input type="email" matInput formControlName="email" required>
           <mat-error *ngIf="this.formRegistroPersona.get('email')?.hasError('required')">El campo es obligatorio
           </mat-error>
           <mat-error *ngIf="this.formRegistroPersona.get('email')?.hasError('email')">El campo no es un email

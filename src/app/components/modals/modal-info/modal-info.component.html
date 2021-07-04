@@ -1,0 +1,15 @@
+<ng-container *ngIf="data.spinner;else info">
+  <mat-spinner></mat-spinner>
+</ng-container>
+<ng-template #info>
+  <h1 mat-dialog-title align="center">{{data.title}}</h1>
+  <ng-container *ngIf="data.icon">
+    <div class="text-center">
+      <mat-icon class="icon-{{data.icon}}">{{data.icon}}</mat-icon>
+    </div>
+  </ng-container>
+  <div mat-dialog-content>{{data.message}}</div>
+  <div mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" mat-dialog-close>Volver</button>
+  </div>
+</ng-template>

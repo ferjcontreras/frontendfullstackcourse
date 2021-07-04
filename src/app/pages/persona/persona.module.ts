@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { ModalInfoModule } from 'src/app/components/modals/modal-info/modal-info.module';
 
 
 
@@ -36,6 +37,7 @@ import { MatIconModule } from '@angular/material/icon';
 		MatCardModule,
 		MatTableModule,
 		MatIconModule,
+		ModalInfoModule
 	]
 })
 export class PersonaModule { }

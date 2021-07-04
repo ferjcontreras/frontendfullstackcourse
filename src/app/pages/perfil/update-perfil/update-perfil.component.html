@@ -12,7 +12,7 @@
         </div>
         <mat-form-field class="form-width ms-3">
           <mat-label>Email</mat-label>
-          <input matInput formControlName="email">
+          <input matInput formControlName="email" required>
           <mat-error *ngIf="this.formUpdateUsuario.get('email')?.errors && this.formUpdateUsuario.get('email')?.dirty">
             {{ getErrorMessageEmail('email') }}</mat-error>
         </mat-form-field>

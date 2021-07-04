@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import IrespBackend from '../interfaces/IrespBackend';
@@ -17,8 +17,13 @@ export class PersonasService {
 		return this.http.post<IrespBackend>(`${this.rutaApi}/persona/create`, dataForm, {});
 	}
 
-	listarPersonas() {
-		return this.http.get<IrespBackend>(`${this.rutaApi}/persona/readAll`);
+	listarPersonas(areEmpleado?: boolean) {
+		const httpOptions = {
+			headers: new HttpHeaders({
+				'empleado': String(areEmpleado || false)
+			})
+		};
+		return this.http.get<IrespBackend>(`${this.rutaApi}/persona/readAll`, httpOptions);
 	}
 
 	getPersona(dataForm: {}) {

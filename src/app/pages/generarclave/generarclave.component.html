@@ -1,16 +1,42 @@
-<mat-card>
-<form [formGroup]="this.formGenerar" class="custom_form">
-    <h1>Generar Contraseña</h1>
-    <mat-form-field class="example-full-width">
-        <mat-label>Contraseña</mat-label>
-        <input matInput formControlName="password" type="password">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <mat-label>Repetir Contraseña</mat-label>
-        <input matInput formControlName="password_repeat" type="password">
-    </mat-form-field>
-    <mat-error *ngIf="this.claveerr">{{this.messageerr}}</mat-error>
-    <input formControlName="userHash" type="hidden">
-    <button mat-raised-button color="primary" (click)="Generar()">Generar Clave</button>
-</form>
-</mat-card>>
+<div class="container d-flex align-items-center justify-content-around dashboard-cards h-100">
+  <mat-card class="custom_card cardStyle">
+    <mat-card-header class="d-block text-center py-2">
+      <mat-card-title>Generar Contraseña</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="this.formGenerar">
+      <mat-card-content class="custom_card">
+        <mat-form-field appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide" tabindex="-1">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="this.formGenerar.get('password')?.errors">
+            {{ getErrorMessagePassword('password') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Repetir Password</mat-label>
+          <input formControlName="password_repeat" matInput [type]="hide_repeat ? 'password' : 'text'" required>
+          <button mat-icon-button matSuffix (click)="hide_repeat = !hide_repeat" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide" tabindex="-1">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="this.formGenerar.get('password_repeat')?.errors || this.formGenerar.get('password')?.value !== this.formGenerar.get('password_repeat')?.value">
+            {{ getErrorMessagePassword('password_repeat') }}</mat-error>
+        </mat-form-field>
+
+        <input formControlName="userHash" type="hidden">
+
+      </mat-card-content>
+
+      <mat-card-actions class="text-center">
+        <button mat-raised-button color="primary" (click)="Generar()" [disabled]="!formGenerar.valid">Generar
+          Clave</button>
+      </mat-card-actions>
+    </form>
+
+  </mat-card>
+</div>

@@ -13,22 +13,24 @@ import { MatButtonModule } from '@angular/material/button';
 
 //forms
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalInfoModule } from 'src/app/components/modals/modal-info/modal-info.module';
 
 @NgModule({
-  declarations: [
-    LoginComponent
-  ],
-  imports: [
-    CommonModule,
-    LoginRoutingModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
+	declarations: [
+		LoginComponent
+	],
+	imports: [
+		CommonModule,
+		LoginRoutingModule,
+		MatCardModule,
+		MatFormFieldModule,
+		MatIconModule,
+		MatInputModule,
+		MatButtonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		ModalInfoModule
+	],
 
 })
 export class LoginModule { }

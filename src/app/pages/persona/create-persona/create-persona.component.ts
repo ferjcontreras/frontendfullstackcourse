@@ -1,6 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import IModalData from 'src/app/interfaces/IModalData';
+import ModalGeneral from 'src/app/services/ModalGeneral';
 import { PersonasService } from 'src/app/services/personas.service';
 
 @Component({
@@ -10,9 +13,27 @@ import { PersonasService } from 'src/app/services/personas.service';
 })
 export class CreatePersonaComponent implements OnInit {
 
-	constructor(public fb: FormBuilder, public personasService: PersonasService, private location: Location) { }
+	dataExito: IModalData = {
+		title: 'Éxito',
+		message: 'Persona agregada correctamente',
+		icon: 'check_circle'
+	};
+	dataError: IModalData = {
+		title: 'Error',
+		message: 'La persona no se pudo agregar',
+		icon: 'error'
+	};
+
+	constructor(
+		public fb: FormBuilder,
+		public personasService: PersonasService,
+		private location: Location,
+		private dialog: MatDialog,
+	) { }
 
 	maxDate: Date = new Date();
+	modals = new ModalGeneral(this.dialog, this.location);
+
 
 	formRegistroPersona = this.fb.group({
 		nombre: ["", [Validators.required, Validators.pattern(/^([A-Z]|[a-z])+$/)]],
@@ -29,8 +50,9 @@ export class CreatePersonaComponent implements OnInit {
 
 	handleRegistro() {
 		if (this.formRegistroPersona.valid) {
-			this.personasService.crearPersona(this.formRegistroPersona.value).subscribe(respuetaBackend => {
-				console.log(respuetaBackend)
+			this.modals.openLoading();
+			this.personasService.crearPersona(this.formRegistroPersona.value).subscribe(respuestaBackend => {
+				this.modals.openModalInfo(respuestaBackend.estado == 'success' ? this.dataExito : this.dataError);
 			})
 		}
 	}

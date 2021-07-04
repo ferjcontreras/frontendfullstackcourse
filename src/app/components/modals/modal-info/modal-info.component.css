@@ -1,0 +1,20 @@
+h1 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+mat-icon {
+  font-size: 6rem;
+  width: 6rem;
+}
+
+.icon-error {
+  color: red;
+}
+
+.icon-check_circle {
+  color: green;
+}

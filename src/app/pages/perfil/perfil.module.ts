@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UpdatePerfilComponent } from './update-perfil/update-perfil.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { PerfilRoutingRoutingModule } from './perfil-routing-routing.module';
+import { ModalInfoModule } from 'src/app/components/modals/modal-info/modal-info.module';
 
 // material
 import { MatCardModule } from '@angular/material/card';
@@ -18,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 @NgModule({
 	declarations: [
 		UpdatePerfilComponent,
-		ChangePasswordComponent
+		ChangePasswordComponent,
 	],
 	imports: [
 		CommonModule,
@@ -30,7 +31,8 @@ import { MatIconModule } from '@angular/material/icon';
 		MatSelectModule,
 		MatButtonModule,
 		MatCardModule,
-		MatIconModule
+		MatIconModule,
+		ModalInfoModule
 	]
 })
 export class PerfilModule { }

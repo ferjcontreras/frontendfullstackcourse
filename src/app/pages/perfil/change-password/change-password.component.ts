@@ -1,6 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import IModalData from 'src/app/interfaces/IModalData';
+import ModalGeneral from 'src/app/services/ModalGeneral';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
@@ -10,7 +13,23 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class ChangePasswordComponent implements OnInit {
 
-	constructor(public fb: FormBuilder, public usuariosServicio: UsuariosService, private location: Location) {
+	dataExito: IModalData = {
+		title: 'Éxito',
+		message: 'Contraseña actualizada correctamente',
+		icon: 'check_circle'
+	};
+	dataError: IModalData = {
+		title: 'Error',
+		message: 'La Contraseña no se pudo actualizar',
+		icon: 'error'
+	};
+
+	constructor(
+		public fb: FormBuilder,
+		public usuariosServicio: UsuariosService,
+		private location: Location,
+		private dialog: MatDialog,
+	) {
 	}
 
 	ngOnInit(): void {
@@ -18,6 +37,8 @@ export class ChangePasswordComponent implements OnInit {
 
 	hide: boolean = true;
 	hide_repeat: boolean = true;
+	modals = new ModalGeneral(this.dialog, this.location);
+
 
 	formChangePassword = this.fb.group({
 		password: ["", [Validators.required, Validators.minLength(8)]],
@@ -27,8 +48,9 @@ export class ChangePasswordComponent implements OnInit {
 
 	handleChangePassword() {
 		if (this.formChangePassword.valid && this.formChangePassword.get('password')?.value === this.formChangePassword.get('password_repeat')?.value) {
+			this.modals.openLoading();
 			this.usuariosServicio.changePassword(this.formChangePassword.value).subscribe(respuestaBackend => {
-				console.log(respuestaBackend)
+				this.modals.openModalInfo(respuestaBackend.estado == 'success' ? this.dataExito : this.dataError);
 			})
 		}
 	}
@@ -42,6 +64,5 @@ export class ChangePasswordComponent implements OnInit {
 	backPage(): void {
 		this.location.back()
 	}
-
-
 }
+
