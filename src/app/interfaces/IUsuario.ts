@@ -1,5 +1,5 @@
 export default interface IUsuario {
-	_id: number
+	id: number
 	nick: string,
 	email: string,
 	idRol: number,

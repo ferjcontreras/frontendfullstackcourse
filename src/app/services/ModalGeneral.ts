@@ -17,13 +17,15 @@ export default class ModalGeneral {
 		this.dialog.open(ModalInfoComponent, dialogConfig);
 	}
 
-	openModalInfo(modalInfo: IModalData) {
+	openModalInfo(modalInfo: IModalData, redirect:boolean = true) {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.data = modalInfo;
 		this.dialog.closeAll();
 		const dialogRef = this.dialog.open(ModalInfoComponent, dialogConfig);
-		dialogRef.afterClosed().subscribe(data => {
-			this.router ? this.router.navigate(["/login"]) : this.location.back()
-		});
+		if(redirect){
+			dialogRef.afterClosed().subscribe(data => {
+				this.router ? this.router.navigate(["/login"]) : this.location.back()
+			});
+		}
 	}
 }

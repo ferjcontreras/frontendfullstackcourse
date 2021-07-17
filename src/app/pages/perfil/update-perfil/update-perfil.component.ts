@@ -27,6 +27,16 @@ export class UpdatePerfilComponent implements OnInit {
 		message: 'El Email no se pudo actualizar',
 		icon: 'error'
 	};
+	dataExitoAvatar: IModalData = {
+		title: 'Éxito',
+		message: 'Avatar actualizado correctamente',
+		icon: 'check_circle'
+	};
+	dataErrorAvatar: IModalData = {
+		title: 'Error',
+		message: 'El Avatar no se pudo actualizar',
+		icon: 'error'
+	};
 
 	constructor(
 		public fb: FormBuilder,
@@ -78,6 +88,53 @@ export class UpdatePerfilComponent implements OnInit {
 
 	backPage(): void {
 		this.location.back()
+	}
+
+	fileName = ""
+	errorMessaje = ""
+	file: any
+
+	private validar(event: any): Boolean {
+		const maxSize = 500000;
+		this.file = event.target.files
+		
+		if (this.file.length < 0) {
+			this.file = "";
+			this.errorMessaje = "No se adjuntó ninguna imagen"
+			return false
+		}
+		
+		if (this.file[0].size > maxSize) {
+			this.file = ""
+			this.errorMessaje = "Imagen muy grande (MAX.: 50mb)"
+			return false
+		}
+		
+		if (!(this.file[0].type == 'image/gif' || this.file[0].type == 'image/png' ||  this.file[0].type == 'image/jpeg' || this.file[0].type == 'image/jpg')) {
+			console.log("El formato no es el permitido")
+			this.file = ""
+			this.errorMessaje = "Formato no permitido"
+			return false
+		}
+		
+		this.fileName = event.target.files[0].name
+		return true
+	}
+
+	onFileChange(event: any) {
+		const validacion = this.validar(event)
+
+		if (validacion) {
+			let file = new FormData()
+			file.append('avatar', this.file[0], this.fileName);
+			this.modals.openLoading();
+			this.usuariosServicio.uploadAvatar(file).subscribe(respuestaBackend => {
+				this.modals.openModalInfo((respuestaBackend.estado == 'success' ? this.dataExitoAvatar : this.dataErrorAvatar),false);
+				respuestaBackend.estado == 'success' && this.usuariosServicio.getAvatar().subscribe(data => {
+					this.createImageFromBlob(data);
+				});
+			})
+		}
 	}
 
 }

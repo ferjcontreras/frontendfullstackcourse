@@ -14,7 +14,7 @@ export class UsuariosService {
 
 	rutaApi: string = environment.urlApi;
 	usuario: IUsuario = {
-		_id: -1,
+		id: -1,
 		email: '',
 		idPersona: -1,
 		idRol: -1,
@@ -46,6 +46,10 @@ export class UsuariosService {
 
 	getUsuarioLocal() {
 		return this.usuario;
+	}
+
+	uploadAvatar(dataForm: {}) {
+		return this.http.put<IrespBackend>(`${this.rutaApi}/usuario/uploadAvatar`, dataForm, {});
 	}
 
 }

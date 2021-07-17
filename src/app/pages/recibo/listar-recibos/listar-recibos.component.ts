@@ -19,7 +19,7 @@ export class ListarRecibosComponent implements OnInit {
   	displayedColumns: string[] = ['fecha', 'sueldo_neto', 'sueldo_bruto', 'visto', 'archivo'];
 	recibos: IRecibo[] = [];
 	usuario: IUsuario = {
-		_id: -1,
+		id: -1,
 		email: '',
 		idPersona: -1,
 		idRol: -1,
@@ -44,7 +44,7 @@ export class ListarRecibosComponent implements OnInit {
 
 	descargar(arch:string) {
 		console.log(this.usuario)
-		window.open(`${this.rutaApi}/recibo/getArchivo/${arch}/${this.usuario._id}`)
+		window.open(`${this.rutaApi}/recibo/getArchivo/${arch}/${this.usuario.id}`)
 	}
 
 }
