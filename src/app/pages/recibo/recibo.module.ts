@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator'; 
 
 
 
@@ -34,6 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
 		MatCardModule,
 		MatTableModule,
 		MatIconModule,
+		MatPaginatorModule
 	]
 })
 export class ReciboModule { }

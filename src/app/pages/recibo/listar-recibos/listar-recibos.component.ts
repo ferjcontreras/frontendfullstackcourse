@@ -5,6 +5,8 @@ import { RecibosService } from 'src/app/services/recibos.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import IUsuario from 'src/app/interfaces/IUsuario';
 import { environment } from 'src/environments/environment';
+import {PageEvent} from '@angular/material/paginator';
+import IrespBackend from 'src/app/interfaces/IrespBackend';
 
 @Component({
   selector: 'app-listar-recibos',
@@ -27,12 +29,23 @@ export class ListarRecibosComponent implements OnInit {
 		avatar: ''
 	};
 	rutaApi: string = environment.urlApi;
+	length = 0;
+  	pageSize = 10;
+  	pageIndex = 0;
+	ctdRecibos = 0;
+
+
 
 	ngOnInit(): void {
-		this.recibosService.listarRecibos().subscribe((resp: any) => {
-			console.log("Hola")
+		
+		this.recibosService.listarRecibos(this.pageIndex).subscribe((resp: any) => {
 			if (resp.estado == 'success') {
 				this.recibos = resp.data;
+				this.recibosService.getCantidadRecibos().subscribe((resp: IrespBackend)=>{
+					if (resp.estado == 'success') {
+						this.length = resp.data[0].c
+					}
+				})
 			}
 		});
 		this.usuario = this.servicioUsuario.getUsuarioLocal();
@@ -43,8 +56,17 @@ export class ListarRecibosComponent implements OnInit {
 	}
 
 	descargar(arch:string) {
-		console.log(this.usuario)
 		window.open(`${this.rutaApi}/recibo/getArchivo/${arch}/${this.usuario.id}`)
+	}
+
+	handlePageEvent(event: PageEvent) {
+		this.pageIndex = event.pageIndex
+		this.recibosService.listarRecibos(this.pageIndex).subscribe((resp: any) => {
+			if (resp.estado == 'success') {
+				this.recibos = resp.data;
+			}
+		});
+
 	}
 
 }

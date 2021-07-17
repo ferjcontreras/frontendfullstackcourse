@@ -17,7 +17,9 @@ export class ListarPersonasComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.personaService.listarPersonas().subscribe((resp: any) => {
+			console.log("Hola")
 			if (resp.estado == 'success') {
+				
 				this.personas = resp.data;
 			}
 		});

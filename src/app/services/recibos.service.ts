@@ -21,7 +21,16 @@ export class RecibosService {
     return this.http.post<IrespBackend>(`${this.rutaApi}/recibo/create`, dataForm, {});
   }
 
-  listarRecibos(areEmpleado?: boolean) {
-		return this.http.get<IrespBackend>(`${this.rutaApi}/recibo/readAll`);
+  listarRecibos(page: number) {
+    const httpOptions = {
+			headers: new HttpHeaders({
+				'page': String(page)
+			})
+		};
+		return this.http.get<IrespBackend>(`${this.rutaApi}/recibo/readAll`, httpOptions );
+  }
+
+  getCantidadRecibos() {
+    return this.http.get<IrespBackend>(`${this.rutaApi}/recibo/getCantidad`);
   }
 }
