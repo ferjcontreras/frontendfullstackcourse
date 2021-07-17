@@ -1,5 +1,7 @@
 # Proyecto Final Programador Web FullStack Avanzado UTN-BA
-###### Authors: *Fernando Contreras & Patricio Pittavino*
+###### Authors: 
+*Fernando Contreras (ferjcontreras@gmail.com) 
+Patricio Pittavino (pitta1881@gmail.com)*
 
 #### About
 This is the FRONTEND of a Web Development with a CRUD system for Users and Paycheck, allowing each user to List and Download its paycheck, and the admin to Upload and Register both users and paychecks.
